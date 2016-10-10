@@ -1,0 +1,13 @@
+recreate_OMP_data
+missrate for 5 : 0.613333
+missrate for 10 : 0.666667
+missrate for 30 : 0.754444
+missrate for 50 : 0.741333
+missrate for 100 : 0.779000
+
+recreate_OMP_data
+missrate for 5 : 0.093333
+missrate for 10 : 0.053333
+missrate for 30 : 0.036667
+missrate for 50 : 0.025333
+missrate for 100 : 0.014667

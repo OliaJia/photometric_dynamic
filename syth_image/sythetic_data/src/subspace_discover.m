@@ -1,0 +1,23 @@
+function [N, OUT, subspace_new, lightset_new,num_spa]=subspace_discover(OUT,lightv,lt_sel,Thr_Num,N,num_spa)
+R=100;
+cnt_sub=1;
+I=lightv;
+while(1)
+    [L_temp,N_temp,IN_ind,OUT_ind]=RanSac_PCA(I(lt_sel,OUT),R);
+    if(size(IN_ind,2)<Thr_Num)
+        break;
+    end
+    N_est{cnt_sub}=N_temp;
+    L_est{cnt_sub}=L_temp;
+    mod=sqrt(sum(L_est{cnt_sub}.*L_est{cnt_sub},2));
+    lightset_new{cnt_sub}=lt_sel(find(mod>0.04));
+    subspace_new{cnt_sub}=OUT(IN_ind);
+    N(:,subspace_new{cnt_sub})=N_est{cnt_sub};
+    OUT=OUT(OUT_ind);
+    cnt_sub=cnt_sub+1;
+end
+num_spa=num_spa+cnt_sub-1;
+if(cnt_sub==1)
+    subspace_new{1}=OUT;
+    lightset_new=[];
+end
